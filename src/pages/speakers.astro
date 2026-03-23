@@ -1,0 +1,98 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+---
+
+<Layout title="Speakers" description="Speaker events and appearances.">
+  <Header />
+  <Main pageTitle="Speakers" pageDesc="Speaker events and appearances">
+    <div class="event-card">
+      <div class="event-meta">
+        <span class="event-label">Date</span>
+        <span class="event-value">Dec 20</span>
+        <span class="event-label">Location</span>
+        <span class="event-value">Bishop Heber College</span>
+      </div>
+      <div class="event-body">
+        <figure class="event-image">
+          <img src="/images/speakers/1765175634593.jpg" alt="Bishop Heber College MBA cohort talk" />
+        </figure>
+        <div class="event-text">
+          <h2>Bishop Heber College MBA Cohort</h2>
+          <p>
+            Thank you Bishop Heber College for inviting me to speak to your MBA cohort!
+            I hope I was able to create value and impact their future positively!
+          </p>
+        </div>
+      </div>
+    </div>
+  </Main>
+  <Footer />
+</Layout>
+
+<style>
+  .event-card {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .event-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-style: italic;
+  }
+
+  .event-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+  }
+
+  .event-value {
+    margin-right: 1rem;
+  }
+
+  .event-body {
+    display: grid;
+    grid-template-columns: minmax(160px, 240px) 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .event-image {
+    margin: 0;
+  }
+
+  .event-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .event-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .event-text h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .event-text p {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 720px) {
+    .event-body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

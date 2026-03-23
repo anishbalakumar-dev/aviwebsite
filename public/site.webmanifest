@@ -1,0 +1,16 @@
+﻿{
+  "name": "Template Site",
+  "short_name": "Template",
+  "description": "A clean, minimal Astro blog template you can customize.",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

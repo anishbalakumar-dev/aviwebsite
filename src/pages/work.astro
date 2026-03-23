@@ -1,0 +1,67 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+---
+
+<Layout title="Work" description="Companies and organizations.">
+  <Header />
+  <Main pageTitle="Work" pageDesc="Companies and organizations">
+    <div class="work-grid">
+      <article class="work-card">
+        <img class="work-image" src="/images/companies/vdart-inc-dp-twitter.png" alt="VDart Group" />
+        <p>Global staffing and technology services firm focused on talent, transformation, and enterprise growth.</p>
+      </article>
+      <article class="work-card">
+        <img class="work-image" src="/images/companies/VDart_Digital_Logo.jpg" alt="VDart Digital" />
+        <p>Digital transformation practice delivering strategy, experience design, and modern software solutions.</p>
+      </article>
+      <article class="work-card">
+        <img class="work-image" src="/images/companies/OIP.jpg" alt="Hidden Curve" />
+        <p>Branding and creative studio crafting identity systems, content, and narrative direction.</p>
+      </article>
+    </div>
+  </Main>
+  <Footer />
+</Layout>
+
+<style>
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .work-image {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    object-fit: contain;
+    background: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  .work-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 900px) {
+    .work-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

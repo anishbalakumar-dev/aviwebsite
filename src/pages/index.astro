@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import Card from "@/components/Card.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Hr from "@/components/Hr.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import StructuredData from "@/components/StructuredData.astro";
+import { SITE } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const posts2025AndLater = sortedPosts.filter(({ data }) => data.pubDatetime.getFullYear() >= 2025);
+const featuredPosts = posts2025AndLater.filter(({ data }) => data.featured);
+const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
+---
+
+<Layout description="A clean, minimal Astro blog template you can adapt to your own brand.">
+  <StructuredData type="WebSite" data={{}} />
+  <StructuredData type="Person" data={{}} />
+  <Header />
+  <main id="main-content" data-layout="index">
+    <Hr />
+
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
+            <ul>
+              {featuredPosts.map((data) => (
+                <Card variant="h3" {...data} showImage={false} />
+              ))}
+            </ul>
+          </section>
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <ul>
+            {recentPosts.map(
+              (data, index) =>
+                index < SITE.postPerIndex && <Card variant="h3" {...data} showImage={false} />,
+            )}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="my-8 text-center">
+      <LinkButton href="https://medium.com/@avishek.g_63458" target="_blank" rel="noopener noreferrer">
+        Blog
+        <IconArrowRight class="inline-block" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset?.layout;
+    if (indexLayout) {
+      sessionStorage.setItem("backUrl", "/");
+    }
+  });
+</script>

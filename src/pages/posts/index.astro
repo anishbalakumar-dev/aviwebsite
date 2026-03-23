@@ -1,0 +1,44 @@
+﻿---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+---
+
+<Layout title="Posts" description="LinkedIn posts feed.">
+  <Header />
+  <Main pageTitle="Posts" pageDesc="LinkedIn posts">
+    <div class="mt-4">
+      <div class="sk-ww-linkedin-profile-post" data-embed-id="25665212"></div>
+    </div>
+  </Main>
+  <Footer />
+</Layout>
+
+<script src="https://widgets.sociablekit.com/linkedin-profile-posts/widget.js" defer></script>
+
+<script is:inline>
+  function loadSociableKit() {
+    const container = document.querySelector(".sk-ww-linkedin-profile-post");
+    if (!container) return;
+
+    // Remove any existing embed content to avoid stale state
+    container.innerHTML = "";
+
+    // Force reload the widget script so it re-scans the DOM after SPA navigation
+    const existing = document.querySelector(
+      'script[src="https://widgets.sociablekit.com/linkedin-profile-posts/widget.js"]'
+    );
+    if (existing) {
+      existing.remove();
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://widgets.sociablekit.com/linkedin-profile-posts/widget.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
+  document.addEventListener("astro:page-load", loadSociableKit);
+  document.addEventListener("astro:after-swap", loadSociableKit);
+</script>
