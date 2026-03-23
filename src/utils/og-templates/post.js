@@ -1,7 +1,7 @@
 import satori from "satori";
 // import { html } from "satori-html";
 import loadGoogleFonts from "../loadGoogleFont";
-import { SITE } from "../consts";
+import { SITE } from "../../consts";
 
 /**
  * Open Graph Image Template for Blog Posts
