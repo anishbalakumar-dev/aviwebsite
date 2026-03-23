@@ -1,7 +1,7 @@
 import satori from "satori";
+import { SITE } from "../../consts";
 // import { html } from "satori-html";
 import loadGoogleFonts from "../loadGoogleFont";
-import { SITE } from "../../consts";
 
 /**
  * Open Graph Image Template for Blog Posts
@@ -109,7 +109,7 @@ export default async (post) => {
       type: "div",
       props: {
         style: {
-          background: "#fefbfb",
+          background: "#0a0a0a",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -124,8 +124,8 @@ export default async (post) => {
                 position: "absolute",
                 top: "-1px",
                 right: "-1px",
-                border: "4px solid #000",
-                background: "#ecebeb",
+                border: "4px solid #A1D99B",
+                background: "#111111",
                 opacity: "0.9",
                 borderRadius: "4px",
                 display: "flex",
@@ -140,8 +140,8 @@ export default async (post) => {
             type: "div",
             props: {
               style: {
-                border: "4px solid #000",
-                background: "#fefbfb",
+                border: "4px solid #A1D99B",
+                background: "#0d0d0d",
                 borderRadius: "4px",
                 display: "flex",
                 justifyContent: "center",
@@ -159,6 +159,7 @@ export default async (post) => {
                     margin: "20px",
                     width: "90%",
                     height: "90%",
+                    color: "#A1D99B",
                   },
                   children: [
                     {
@@ -169,6 +170,7 @@ export default async (post) => {
                           fontWeight: "bold",
                           maxHeight: "84%",
                           overflow: "hidden",
+                          color: "#A1D99B",
                         },
                         children: post.data.title,
                       },
@@ -202,6 +204,7 @@ export default async (post) => {
                                     style: {
                                       overflow: "hidden",
                                       fontWeight: "bold",
+                                      color: "#A1D99B",
                                     },
                                     children: post.data.author,
                                   },
@@ -212,7 +215,11 @@ export default async (post) => {
                           {
                             type: "span",
                             props: {
-                              style: { overflow: "hidden", fontWeight: "bold" },
+                              style: {
+                                overflow: "hidden",
+                                fontWeight: "bold",
+                                color: "#A1D99B",
+                              },
                               children: SITE.title,
                             },
                           },

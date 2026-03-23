@@ -54,10 +54,10 @@ export const criticalCSS = `
   }
   
   .dark {
-    --background: 18 24 27;
-    --foreground: 253 253 253;
-    --muted: 30 41 49;
-    --accent: 255 107 1;
+    --background: 10 10 10;
+    --foreground: 233 247 238;
+    --muted: 21 21 21;
+    --accent: 161 217 155;
   }
   
   /* Critical color classes */

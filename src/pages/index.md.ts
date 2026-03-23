@@ -9,8 +9,6 @@ A clean, minimal Astro blog template you can customize.
 
 - [About](/about.md)
 - [Posts](/posts.md)
-- [Blog](/blogs.md)
-- [Speakers](/speakers.md)
 - [Work](/work.md)
 - [RSS Feed](/rss.xml)
 
