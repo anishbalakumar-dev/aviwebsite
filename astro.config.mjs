@@ -14,6 +14,7 @@ import AstroPWA from "@vite-pwa/astro";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  adapter: vercel(),
   output: "server",
   trailingSlash: "never",
   markdown: {
@@ -99,7 +100,6 @@ export default defineConfig({
       }
     }),
     react(),
-    vercel(),
     AstroPWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico"],
