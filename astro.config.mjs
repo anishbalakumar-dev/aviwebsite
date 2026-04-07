@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
+import vercel from "@astrojs/vercel/serverless";
 import tailwindcss from "@tailwindcss/vite";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
@@ -13,6 +14,7 @@ import AstroPWA from "@vite-pwa/astro";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  output: "server",
   trailingSlash: "never",
   markdown: {
     remarkPlugins: [
@@ -97,6 +99,7 @@ export default defineConfig({
       }
     }),
     react(),
+    vercel(),
     AstroPWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico"],
