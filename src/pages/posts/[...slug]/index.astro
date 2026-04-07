@@ -1,34 +1,23 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import PostDetails from "@/layouts/PostDetails.astro";
 import { getPath } from "@/utils/getPath";
 import getSortedPosts from "@/utils/getSortedPosts";
 
-export interface Props {
-  post: CollectionEntry<"blog">;
-}
+const rawSlug = Astro.params.slug;
+const slugParam = Array.isArray(rawSlug) ? rawSlug.join("/") : rawSlug ?? "";
+const normalizedSlug = slugParam.replace(/^\/+/, "");
 
-export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft && !data.unlisted);
-  const postResult = posts.map((post) => ({
-    params: { slug: getPath(post.id, post.filePath, false) },
-    props: { post },
-  }));
-
-  // Also include unlisted posts so they can be accessed via direct URL
-  const unlistedPosts = await getCollection("blog", ({ data }) => !data.draft && data.unlisted);
-  const unlistedResult = unlistedPosts.map((post) => ({
-    params: { slug: getPath(post.id, post.filePath, false) },
-    props: { post },
-  }));
-
-  return [...postResult, ...unlistedResult];
-}
-
-const { post } = Astro.props;
-
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", ({ data }) => !data.draft);
 const sortedPosts = getSortedPosts(posts);
+const post = posts.find(
+  (entry) =>
+    getPath(entry.id, entry.filePath, false).replace(/^\/+/, "") === normalizedSlug,
+);
+
+if (!post) {
+  return Astro.redirect("/404");
+}
 ---
 
 <PostDetails post={post} posts={sortedPosts} />
